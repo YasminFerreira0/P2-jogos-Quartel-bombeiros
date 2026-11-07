@@ -1,28 +1,25 @@
 # Quartel em Chamas
 
-Projeto desenvolvido para a disciplina de Jogos Digitais II.
+Projeto de Jogos Digitais II — Yasmin Da Cunha Ferreira, matrícula 802.481.
 
 ## Carta
 
-- Tema: Quartel de bombeiros com chamas vivas
-- Tipo: Coleta
-- Modo: Horda
+- Tema: quartel de bombeiros com chamas vivas.
+- Tipo: coleta.
+- Modo: horda, visto de cima.
 
-## Objetivo
+## Objetivo do jogo
 
-O jogador controla um bombeiro dentro de um quartel tomado por
-chamas vivas.
+O objetivo planejado é coletar 20 equipamentos que surgem pela arena enquanto o bombeiro evita as chamas vivas. A partida terminará em vitória ao coletar os 20 itens e em derrota quando a vida acabar. Essas mecânicas serão implementadas nas próximas etapas.
 
-O objetivo é coletar 20 equipamentos de combate ao incêndio
-espalhados pela arena enquanto evita as chamas.
+## Estado da aula 08
 
-O jogador vence ao coletar os 20 itens.
+A cena inicial apresenta a arena, o quartel e o bombeiro. O personagem anda em quatro direções, a câmera acompanha o movimento e as colisões impedem a passagem pelo limite da arena e pela base do quartel.
 
-O jogador perde quando sua vida chega a zero.
+Para testar, abra `project.godot` na Godot 4.6 e pressione **F5**. Use **WASD** ou as **setas** para movimentar o bombeiro.
 
-## Controles
+## Créditos e processo
 
-- W / ↑: cima
-- S / ↓: baixo
-- A / ←: esquerda
-- D / →: direita
+- O cenário e o personagem utilizam os arquivos de arte presentes na pasta `sprites/`. A origem, autoria e licença desses arquivos ainda precisam ser registradas pela autora do projeto.
+- A organização do cenário, as colisões e o shader de transparência foram desenvolvidos com auxílio do Codex (OpenAI). O shader mantém o atlas original intacto.
+- As técnicas de movimentação, câmera e colisão seguem o roteiro da aula 08 de Jogos Digitais II, do professor Ezéfferth C. A. Fernandes.

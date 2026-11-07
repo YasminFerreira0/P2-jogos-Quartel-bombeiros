@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bqigu4ohyil8d"]
+
+[ext_resource type="PackedScene" uid="uid://c7eojplef0dou" path="res://entities/bombeiro.tscn" id="1_kta4m"]
+
+[node name="teste" type="Node2D" unique_id=933113919]
+
+[node name="Bombeiro" parent="." unique_id=963822248 instance=ExtResource("1_kta4m")]
+position = Vector2(198, 180)
