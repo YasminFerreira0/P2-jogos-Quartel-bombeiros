@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://c7eojplef0dou"]
+[gd_scene format=3]
 
-[ext_resource type="Script" uid="uid://dtxw55hqvlsd8" path="res://scripts/bombeiro.gd" id="1_0l7ox"]
-[ext_resource type="Texture2D" uid="uid://bfsog2t52abf5" path="res://sprites/sprites-bombeiro-godot.png" id="1_yb0t8"]
+[ext_resource type="Script" path="res://scripts/bombeiro.gd" id="1_0l7ox"]
+[ext_resource type="Texture2D" path="res://sprites/sprites-bombeiro-godot.png" id="1_yb0t8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0l7ox"]
 atlas = ExtResource("1_yb0t8")
@@ -169,7 +169,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bguly"]
 size = Vector2(55, 22)
 
-[node name="Bombeiro" type="CharacterBody2D" unique_id=963822248]
+[sub_resource type="CircleShape2D" id="CircleShape2D_0l7ox"]
+radius = 55.0
+
+[node name="Bombeiro" type="CharacterBody2D" unique_id=963822248 groups=["player"]]
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_0l7ox")
 
@@ -180,3 +184,11 @@ animation = &"baixo"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=261755886]
 position = Vector2(0, 90)
 shape = SubResource("RectangleShape2D_bguly")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=888224243]
+position = Vector2(0, 75)
+collision_layer = 0
+collision_mask = 4
+
+[node name="@CollisionShape2D@2" type="CollisionShape2D" parent="Hurtbox" unique_id=1666799790]
+shape = SubResource("CircleShape2D_0l7ox")
