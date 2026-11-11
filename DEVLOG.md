@@ -13,3 +13,10 @@
 - Implementei três vidas, dano por contato e um segundo de invulnerabilidade com indicação visual.
 - Criei equipamentos que surgem em pontos da arena, contador até 20, telas de vitória e derrota e botão para reiniciar.
 - Usei desenhos provisórios para as chamas e os itens; a implementação foi feita com auxílio do Codex e testada na Godot.
+
+## Aula 10 — 11/11/2026
+
+- Acrescentei uma região de navegação à arena e um agente em cada chama para contornar a base do quartel.
+- Implementei o ataque com Espaço, um efeito visual e um intervalo de 0,4 segundo entre ataques.
+- As chamas atingidas são removidas e o placar registra quantas foram apagadas; coletar 20 itens continua sendo o objetivo.
+- Com auxílio do Codex, testei o contorno do quartel e o ataque na Godot. O polígono de navegação precisará ser atualizado se os obstáculos mudarem.

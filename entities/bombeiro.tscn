@@ -172,6 +172,9 @@ size = Vector2(55, 22)
 [sub_resource type="CircleShape2D" id="CircleShape2D_0l7ox"]
 radius = 55.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_etchy"]
+radius = 150.0
+
 [node name="Bombeiro" type="CharacterBody2D" unique_id=963822248 groups=["player"]]
 collision_layer = 2
 motion_mode = 1
@@ -192,3 +195,16 @@ collision_mask = 4
 
 [node name="@CollisionShape2D@2" type="CollisionShape2D" parent="Hurtbox" unique_id=1666799790]
 shape = SubResource("CircleShape2D_0l7ox")
+
+[node name="Ataque" type="Area2D" parent="." unique_id=1528886408]
+position = Vector2(0, 75)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ataque" unique_id=2076463325]
+shape = SubResource("CircleShape2D_etchy")
+
+[node name="Efeito" type="Polygon2D" parent="Ataque" unique_id=916747459]
+visible = false
+color = Color(0.45, 0.85, 1, 0.38)
+polygon = PackedVector2Array(150, 0, 147.11778, 29.263548, 138.58192, 57.402515, 124.720436, 83.33553, 106.06602, 106.06602, 83.33553, 124.720436, 57.402515, 138.58192, 29.263548, 147.11778, 9.184852e-15, 150, -29.263548, 147.11778, -57.402515, 138.58192, -83.33553, 124.720436, -106.06602, 106.06602, -124.720436, 83.33553, -138.58192, 57.402515, -147.11778, 29.263548, -150, 1.8369703e-14, -147.11778, -29.263548, -138.58192, -57.402515, -124.720436, -83.33553, -106.06602, -106.06602, -83.33553, -124.720436, -57.402515, -138.58192, -29.263548, -147.11778, -2.7554553e-14, -150, 29.263548, -147.11778, 57.402515, -138.58192, 83.33553, -124.720436, 106.06602, -106.06602, 124.720436, -83.33553, 138.58192, -57.402515, 147.11778, -29.263548)

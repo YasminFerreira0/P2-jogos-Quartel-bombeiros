@@ -6,6 +6,7 @@ const CENA_ITEM := preload("res://entities/item.tscn")
 const META := 20
 const MAX_ITENS := 3
 var coletados := 0
+var abates := 0
 var pontos_ocupados: Dictionary = {}
 var terminou := false
 
@@ -14,6 +15,7 @@ var terminou := false
 @onready var nascedouros: Node2D = $Nascedouros
 @onready var timer_horda: Timer = $TimerHorda
 @onready var texto_vida: Label = $HUD/Painel/Conteudo/Vida
+@onready var texto_abates: Label = $HUD/Painel/Conteudo/Abates
 @onready var texto_itens: Label = $HUD/Painel/Conteudo/Itens
 @onready var fim: Control = $HUD/Fim
 @onready var texto_fim: Label = $HUD/Fim/Caixa/Texto
@@ -23,6 +25,7 @@ func _ready() -> void:
 	jogador.morreu.connect(perder)
 	_atualizar_vida(jogador.vida)
 	_atualizar_itens()
+	_atualizar_abates()
 	_spawn_item()
 
 func _atualizar_vida(vida: int) -> void:
@@ -31,12 +34,20 @@ func _atualizar_vida(vida: int) -> void:
 func _atualizar_itens() -> void:
 	texto_itens.text = "Itens: %d / %d" % [coletados, META]
 
+func _atualizar_abates() -> void:
+	texto_abates.text = "Chamas apagadas: %d" % abates
+
+func _ao_apagar_chama() -> void:
+	abates += 1
+	_atualizar_abates()
+
 func _spawn_chama() -> void:
 	if terminou:
 		return
 	var pontos := nascedouros.get_children()
 	var ponto: Node2D = pontos.pick_random()
 	var chama := CENA_CHAMA.instantiate() as CharacterBody2D
+	chama.apagada.connect(_ao_apagar_chama)
 	chama.position = ponto.position
 	$Inimigos.add_child(chama)
 	timer_horda.wait_time = maxf(0.7, timer_horda.wait_time * 0.96)

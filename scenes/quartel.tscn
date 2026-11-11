@@ -42,6 +42,11 @@ size = Vector2(32, 1280)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vk4lg"]
 size = Vector2(32, 1280)
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_6bdkx"]
+vertices = PackedVector2Array(601, 1120, 1996, 1228, 52, 1228, 171, 1120, 52, 52, 171, 1000, 1996, 52, 601, 1000)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5), PackedInt32Array(5, 4, 6, 7), PackedInt32Array(7, 6, 1, 0)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(52, 52, 1996, 52, 1996, 1228, 52, 1228), PackedVector2Array(171, 1000, 171, 1120, 601, 1120, 601, 1000)])
+
 [node name="Quartel" type="Node2D" unique_id=977854887]
 script = ExtResource("1_6bdkx")
 
@@ -205,6 +210,10 @@ theme_override_font_sizes/font_size = 24
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 
+[node name="Abates" type="Label" parent="HUD/Painel/Conteudo" unique_id=110731724]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
 [node name="Fim" type="ColorRect" parent="HUD" unique_id=1912291092]
 process_mode = 3
 visible = false
@@ -233,6 +242,9 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 text = "Jogar novamente"
+
+[node name="Navegacao" type="NavigationRegion2D" parent="." unique_id=1977695200]
+navigation_polygon = SubResource("NavigationPolygon_6bdkx")
 
 [connection signal="timeout" from="TimerHorda" to="." method="_spawn_chama"]
 [connection signal="timeout" from="TimerItens" to="." method="_spawn_item"]
