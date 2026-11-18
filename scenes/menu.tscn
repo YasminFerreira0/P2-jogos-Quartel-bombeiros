@@ -1,0 +1,164 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/quartel.tscn" id="2"]
+[ext_resource type="Texture2D" path="res://sprites/hud.png" id="3"]
+
+[sub_resource type="AtlasTexture" id="Chama"]
+atlas = ExtResource("3")
+region = Rect2(59, 432, 100, 122)
+filter_clip = true
+
+[sub_resource type="StyleBoxFlat" id="Cartao"]
+content_margin_left = 48.0
+content_margin_top = 32.0
+content_margin_right = 48.0
+content_margin_bottom = 36.0
+bg_color = Color(0.042, 0.079, 0.14, 1)
+border_width_left = 1
+border_width_top = 3
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.88, 0.53, 0.27, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_left = 18
+corner_radius_bottom_right = 18
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 16
+
+[sub_resource type="StyleBoxFlat" id="Botao"]
+bg_color = Color(1, 0.69, 0.36, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_left = 9
+corner_radius_bottom_right = 9
+
+[sub_resource type="StyleBoxFlat" id="BotaoHover"]
+bg_color = Color(1, 0.79, 0.52, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_left = 9
+corner_radius_bottom_right = 9
+
+[sub_resource type="StyleBoxFlat" id="Foco"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.91, 0.79, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_left = 9
+corner_radius_bottom_right = 9
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+arena = ExtResource("2")
+
+[node name="Fundo" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.021, 0.036, 0.065, 1)
+
+[node name="Centro" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cartao" type="PanelContainer" parent="Centro"]
+custom_minimum_size = Vector2(690, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("Cartao")
+
+[node name="Conteudo" type="VBoxContainer" parent="Centro/Cartao"]
+layout_mode = 2
+theme_override_constants/separation = 17
+
+[node name="Chama" type="TextureRect" parent="Centro/Cartao/Conteudo"]
+texture_filter = 1
+custom_minimum_size = Vector2(60, 72)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+texture = SubResource("Chama")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Titulo" type="Label" parent="Centro/Cartao/Conteudo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.84, 0.64, 1)
+theme_override_font_sizes/font_size = 54
+text = "Quartel em Chamas"
+horizontal_alignment = 1
+
+[node name="Objetivo" type="Label" parent="Centro/Cartao/Conteudo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44, 0.86, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Recupere 20 equipamentos."
+horizontal_alignment = 1
+
+[node name="Separador" type="HSeparator" parent="Centro/Cartao/Conteudo"]
+layout_mode = 2
+
+[node name="Instrucoes" type="Label" parent="Centro/Cartao/Conteudo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.87, 0.95, 1)
+theme_override_constants/line_spacing = 9
+theme_override_font_sizes/font_size = 21
+text = "WASD ou setas para se mover.
+Espaço para apagar focos próximos.
+Siga a luz azul e encoste no equipamento para coletar."
+horizontal_alignment = 1
+
+[node name="Vida" type="Label" parent="Centro/Cartao/Conteudo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.69, 0.77, 0.88, 1)
+theme_override_font_sizes/font_size = 17
+text = "O fogo tira vida. A cada 5 itens, recupere 1 coração até o limite de 4."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Jogar" type="Button" parent="Centro/Cartao/Conteudo"]
+custom_minimum_size = Vector2(310, 58)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.14, 0.075, 0.035, 1)
+theme_override_colors/font_hover_color = Color(0.14, 0.075, 0.035, 1)
+theme_override_colors/font_focus_color = Color(0.14, 0.075, 0.035, 1)
+theme_override_colors/font_pressed_color = Color(0.14, 0.075, 0.035, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("Botao")
+theme_override_styles/hover = SubResource("BotaoHover")
+theme_override_styles/pressed = SubResource("Botao")
+theme_override_styles/focus = SubResource("Foco")
+text = "Jogar"
+
+[node name="Erro" type="Label" parent="Centro/Cartao/Conteudo"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.55, 0.55, 1)
+text = "Não foi possível abrir a arena. Tente novamente."
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Centro/Cartao/Conteudo/Jogar" to="." method="_jogar"]

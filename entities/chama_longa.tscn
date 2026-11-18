@@ -1,0 +1,103 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/chama.gd" id="1_xabdq"]
+[ext_resource type="Texture2D" path="res://sprites/atlas-efeitos.png" id="2_s4n7g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_paoq6"]
+size = Vector2(124, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vj20x"]
+atlas = ExtResource("2_s4n7g")
+region = Rect2(40, 180, 165, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c14ul"]
+atlas = ExtResource("2_s4n7g")
+region = Rect2(205, 180, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ta7vo"]
+atlas = ExtResource("2_s4n7g")
+region = Rect2(365, 180, 165, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xrhl"]
+atlas = ExtResource("2_s4n7g")
+region = Rect2(530, 180, 170, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sse7"]
+atlas = ExtResource("2_s4n7g")
+region = Rect2(700, 180, 165, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38mrf"]
+atlas = ExtResource("2_s4n7g")
+region = Rect2(865, 180, 170, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6us4"]
+atlas = ExtResource("2_s4n7g")
+region = Rect2(1035, 180, 175, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y84hr"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vj20x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c14ul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ta7vo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xrhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2sse7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38mrf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6us4")
+}],
+"loop": true,
+"name": &"queimando",
+"speed": 7.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_y0ajl"]
+offsets = PackedFloat32Array(0, 0.25, 0.65, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.82, 1, 1, 1, 0.28, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t88os"]
+gradient = SubResource("Gradient_y0ajl")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="ChamaLonga" type="CharacterBody2D" unique_id=1147106305 groups=["chama_longa", "inimigo"]]
+collision_layer = 4
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_xabdq")
+vida = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=325275373]
+shape = SubResource("RectangleShape2D_paoq6")
+
+[node name="Fogo" type="AnimatedSprite2D" parent="." unique_id=342759665]
+position = Vector2(0, -5)
+scale = Vector2(0.8, 0.6)
+sprite_frames = SubResource("SpriteFrames_y84hr")
+animation = &"queimando"
+
+[node name="LuzFogo" type="PointLight2D" parent="." unique_id=1091606477]
+position = Vector2(0, -8)
+color = Color(1, 0.53, 0.2, 1)
+texture = SubResource("GradientTexture2D_t88os")
+texture_scale = 1.55

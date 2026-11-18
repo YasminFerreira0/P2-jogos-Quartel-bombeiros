@@ -2,10 +2,14 @@
 extends CharacterBody2D
 
 signal vida_alterada(vida_atual: int)
+signal sofreu_dano
 signal morreu
+signal jato_disparado(posicao: Vector2)
 
-@export var velocidade: float = 150.0
-@export var vida: int = 3
+const VIDA_MAXIMA := 4
+
+@export var velocidade: float = 175.0
+var vida: int = VIDA_MAXIMA
 var invencivel := false
 var pode_atacar := true
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
@@ -29,11 +33,18 @@ func _physics_process(_delta: float) -> void:
 	else:
 		anim.play("baixo" if direcao.y > 0 else "cima")
 
+func recuperar_vida() -> void:
+	if vida <= 0 or vida >= VIDA_MAXIMA:
+		return
+	vida += 1
+	vida_alterada.emit(vida)
+
 func levar_dano() -> void:
 	if invencivel or vida <= 0:
 		return
 	vida -= 1
 	vida_alterada.emit(vida)
+	sofreu_dano.emit()
 	if vida <= 0:
 		morreu.emit()
 		return
@@ -52,6 +63,7 @@ func atacar() -> void:
 		if inimigo.is_in_group("inimigo") and inimigo.has_method("levar_golpe"):
 			inimigo.levar_golpe()
 	efeito_ataque.show()
+	jato_disparado.emit(area_ataque.global_position)
 	await get_tree().create_timer(0.1).timeout
 	efeito_ataque.hide()
 	await get_tree().create_timer(0.3).timeout
